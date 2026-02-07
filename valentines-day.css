@@ -1,0 +1,485 @@
+/* Valentine's Day Specific Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.day-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url('valentines.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 1;
+    background-color: #8b0000;
+}
+
+.day-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+.day-content {
+    background: rgba(107, 68, 35, 0.5);
+    border-radius: 25px;
+    padding: 5rem;
+    max-width: 600px;
+    width: 85%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 3;
+    animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes floatingBackground {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-30px) translateX(20px);
+        opacity: 0.25;
+    }
+    50% {
+        transform: translateY(-60px) translateX(0px);
+        opacity: 0.2;
+    }
+    75% {
+        transform: translateY(-30px) translateX(-20px);
+        opacity: 0.25;
+    }
+}
+
+@keyframes floatingTextVariant {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-80px) translateX(60px) rotate(15deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-150px) translateX(-40px) rotate(-15deg);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translateY(-80px) translateX(-60px) rotate(10deg);
+        opacity: 0.5;
+    }
+}
+
+.floating-emoji {
+    position: fixed;
+    font-size: 15rem;
+    opacity: 0.3;
+    animation: floatingBackground 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart-1 {
+    top: 5%;
+    left: 5%;
+    font-size: 12rem;
+    animation-delay: 0s;
+}
+
+.heart-2 {
+    top: 15%;
+    right: 8%;
+    font-size: 14rem;
+    animation-delay: 1s;
+}
+
+.heart-3 {
+    top: 35%;
+    left: 10%;
+    font-size: 11rem;
+    opacity: 0.25;
+    animation-delay: 2s;
+}
+
+.heart-4 {
+    top: 45%;
+    right: 12%;
+    font-size: 13rem;
+    animation-delay: 1.5s;
+}
+
+.heart-5 {
+    top: 65%;
+    left: 15%;
+    font-size: 12rem;
+    opacity: 0.2;
+    animation-delay: 3s;
+}
+
+.heart-6 {
+    top: 75%;
+    right: 5%;
+    font-size: 11rem;
+    animation-delay: 2.5s;
+}
+
+.heart-7 {
+    top: 25%;
+    left: 50%;
+    font-size: 10rem;
+    opacity: 0.22;
+    animation-delay: 0.5s;
+}
+
+.heart-8 {
+    top: 55%;
+    right: 40%;
+    font-size: 12rem;
+    opacity: 0.25;
+    animation-delay: 3.5s;
+}
+
+.heart-9 {
+    top: 80%;
+    left: 45%;
+    font-size: 11rem;
+    opacity: 0.2;
+    animation-delay: 2s;
+}
+
+.floating-text {
+    position: fixed;
+    font-size: 1.1rem;
+    color: rgba(255, 100, 100, 0.45);
+    animation: floatingTextVariant 12s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 10;
+    font-weight: 600;
+    white-space: nowrap;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.6),
+        1px -1px 0 rgba(0, 0, 0, 0.6),
+        -1px 1px 0 rgba(0, 0, 0, 0.6),
+        1px 1px 0 rgba(0, 0, 0, 0.6),
+        1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.love-text-1 {
+    top: 8%;
+    left: 5%;
+    animation-delay: 0s;
+    animation-duration: 14s;
+}
+
+.love-text-2 {
+    top: 18%;
+    right: 6%;
+    animation-delay: 2.5s;
+    animation-duration: 11s;
+}
+
+.love-text-3 {
+    top: 30%;
+    left: 18%;
+    animation-delay: 1.2s;
+    animation-duration: 13s;
+}
+
+.love-text-4 {
+    top: 42%;
+    right: 22%;
+    animation-delay: 3.8s;
+    animation-duration: 12s;
+}
+
+.love-text-5 {
+    top: 54%;
+    left: 10%;
+    animation-delay: 0.7s;
+    animation-duration: 15s;
+}
+
+.love-text-6 {
+    top: 66%;
+    right: 14%;
+    animation-delay: 4.2s;
+    animation-duration: 11.5s;
+}
+
+.love-text-7 {
+    top: 12%;
+    left: 55%;
+    animation-delay: 1.8s;
+    animation-duration: 13.5s;
+}
+
+.love-text-8 {
+    top: 32%;
+    right: 48%;
+    animation-delay: 2.1s;
+    animation-duration: 12.5s;
+}
+
+.love-text-9 {
+    top: 58%;
+    left: 62%;
+    animation-delay: 3.3s;
+    animation-duration: 14.5s;
+}
+
+.love-text-10 {
+    top: 76%;
+    right: 32%;
+    animation-delay: 1.5s;
+    animation-duration: 11s;
+}
+
+.love-text-11 {
+    top: 26%;
+    left: 82%;
+    animation-delay: 2.8s;
+    animation-duration: 13s;
+}
+
+.love-text-12 {
+    top: 72%;
+    left: 40%;
+    animation-delay: 4s;
+    animation-duration: 12.5s;
+}
+
+.day-title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.day-date {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.day-message {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.back-button {
+    background: linear-gradient(135deg, #dc143c, #ff69b4);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(220, 20, 60, 0.3);
+}
+
+/* Lock Screen */
+.lock-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url('valentines.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #8b0000;
+}
+
+.lock-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 3rem;
+    max-width: 400px;
+    width: 85%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.lock-icon-large {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.lock-message {
+    font-size: 1.5rem;
+    color: #dc143c;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.lock-submessage {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.countdown {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .day-content,
+    .lock-content {
+        padding: 3rem 2rem;
+        width: 85%;
+    }
+    
+    .day-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .day-content,
+    .lock-content {
+        padding: 2rem 1.5rem;
+        width: 90%;
+        border-radius: 20px;
+    }
+    
+    .day-title {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .day-date {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .day-message {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+    
+    .back-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .lock-icon-large {
+        font-size: 3rem;
+    }
+    
+    .lock-message {
+        font-size: 1.3rem;
+    }
+    
+    .lock-submessage {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .day-page,
+    .lock-screen {
+        min-height: 100vh;
+        padding: 1rem;
+    }
+    
+    .day-content,
+    .lock-content {
+        padding: 1.5rem 1rem;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 15px;
+    }
+    
+    .day-title {
+        font-size: 1.7rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .day-date {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .day-message {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-bottom: 1.2rem;
+    }
+    
+    .back-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+        border-radius: 40px;
+    }
+    
+    .lock-icon-large {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .lock-message {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .lock-submessage {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .countdown {
+        font-size: 1rem;
+    }
+}

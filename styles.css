@@ -1,0 +1,593 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #1a0405 0%, #2d0709 25%, #3d0a0f 50%, #2d0709 75%, #1a0405 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    margin: 0;
+    padding: 0;
+}
+
+/* 3D Canvas Container */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Background */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: 
+        radial-gradient(ellipse at 10% 10%, rgba(0, 0, 0, 0.5) 0%, transparent 40%),
+        radial-gradient(ellipse at 90% 90%, rgba(0, 0, 0, 0.5) 0%, transparent 40%),
+        radial-gradient(ellipse at 10% 90%, rgba(0, 0, 0, 0.4) 0%, transparent 35%),
+        radial-gradient(ellipse at 90% 10%, rgba(0, 0, 0, 0.4) 0%, transparent 35%);
+    animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background: linear-gradient(135deg, #1a0405 0%, #2d0709 25%, #3d0a0f 50%, #2d0709 75%, #1a0405 100%);
+    }
+    25% {
+        background: linear-gradient(135deg, #220506 0%, #35080b 25%, #450a0f 50%, #35080b 75%, #220506 100%);
+    }
+    50% {
+        background: linear-gradient(135deg, #1a0405 0%, #2d0709 25%, #3d0a0f 50%, #2d0709 75%, #1a0405 100%);
+    }
+    75% {
+        background: linear-gradient(135deg, #260608 0%, #3d0a0f 25%, #4d0c12 50%, #3d0a0f 75%, #260608 100%);
+    }
+    100% {
+        background: linear-gradient(135deg, #1a0405 0%, #2d0709 25%, #3d0a0f 50%, #2d0709 75%, #1a0405 100%);
+    }
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes colorPulse {
+    0% {
+        color: rgba(255, 100, 100, 0.4);
+    }
+    50% {
+        color: rgba(255, 0, 0, 0.25);
+    }
+    100% {
+        color: rgba(255, 100, 100, 0.4);
+    }
+}
+
+.title {
+    font-size: 6rem;
+    color: rgba(255, 0, 0, 0.4);
+    animation: colorPulse 4s ease-in-out infinite;
+    text-shadow: 
+        -2px -2px 0 rgba(0, 0, 0, 0.8),
+        2px -2px 0 rgba(0, 0, 0, 0.8),
+        -2px 2px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.8),
+        -2px 0 0 rgba(0, 0, 0, 0.8),
+        2px 0 0 rgba(0, 0, 0, 0.8),
+        0 -2px 0 rgba(0, 0, 0, 0.8),
+        0 2px 0 rgba(0, 0, 0, 0.8),
+        3px 3px 0 rgba(0, 0, 0, 0.5),
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.8);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 2.5rem;
+    color: rgba(255, 0, 0, 0.35);
+    animation: colorPulse 4s ease-in-out infinite;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px 0 0 rgba(0, 0, 0, 0.8),
+        1px 0 0 rgba(0, 0, 0, 0.8),
+        0 -1px 0 rgba(0, 0, 0, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    opacity: 1;
+}
+
+.dedication {
+    font-size: 2rem;
+    color: rgba(255, 0, 0, 0.35);
+    animation: colorPulse 4s ease-in-out infinite;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px 0 0 rgba(0, 0, 0, 0.8),
+        1px 0 0 rgba(0, 0, 0, 0.8),
+        0 -1px 0 rgba(0, 0, 0, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+    font-style: normal;
+    opacity: 1;
+}
+
+.dedication .chetan {
+    font-style: italic;
+}
+
+/* Days Grid */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Day Cards */
+.day-card {
+    background: rgba(180, 50, 60, 0.25);
+    border-radius: 25px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 40px rgba(220, 20, 60, 0.3);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(220, 20, 60, 0.4);
+    overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.day-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(220, 20, 60, 0.4);
+    border-color: rgba(220, 20, 60, 0.6);
+}
+
+.day-card.locked {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.day-card.locked:hover {
+    transform: none;
+}
+
+.card-icon {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.card-title {
+    font-size: 2rem;
+    color: rgba(255, 0, 0, 0.4);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    animation: colorPulse 4s ease-in-out infinite;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px 0 0 rgba(0, 0, 0, 0.8),
+        1px 0 0 rgba(0, 0, 0, 0.8),
+        0 -1px 0 rgba(0, 0, 0, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-date {
+    font-size: 1.3rem;
+    color: rgba(255, 0, 0, 0.35);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    animation: colorPulse 4s ease-in-out infinite;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px 0 0 rgba(0, 0, 0, 0.8),
+        1px 0 0 rgba(0, 0, 0, 0.8),
+        0 -1px 0 rgba(0, 0, 0, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-love {
+    font-size: 1.5rem;
+    color: rgba(255, 100, 100, 0.7);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    animation: colorPulse 4s ease-in-out infinite;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 0.8),
+        1px -1px 0 rgba(0, 0, 0, 0.8),
+        -1px 1px 0 rgba(0, 0, 0, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.8),
+        -1px 0 0 rgba(0, 0, 0, 0.8),
+        1px 0 0 rgba(0, 0, 0, 0.8),
+        0 -1px 0 rgba(0, 0, 0, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Lock Overlay */
+.lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.day-card.unlocked .lock-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lock-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.lock-text {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem;
+    }
+    
+    .title {
+        font-size: 3.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.8rem;
+    }
+    
+    .dedication {
+        font-size: 1.3rem;
+    }
+    
+    .days-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .day-card {
+        padding: 2rem;
+        min-height: 220px;
+    }
+    
+    .card-icon {
+        font-size: 3.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.8rem;
+    }
+    
+    .card-date {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .dedication {
+        font-size: 1.1rem;
+    }
+    
+    .days-grid {
+        gap: 1.5rem;
+    }
+    
+    .day-card {
+        padding: 1.5rem;
+        min-height: 200px;
+    }
+    
+    .card-icon {
+        font-size: 3rem;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .card-date {
+        font-size: 1rem;
+    }
+}
+
+/* Day Page Styles */
+.day-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 1;
+    background-color: #8b0000;
+}
+
+.day-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.day-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.day-background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.day-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 3;
+    animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.day-title {
+    font-size: 2.5rem;
+    color: #dc143c;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.day-date {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.day-message {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    background: linear-gradient(135deg, #dc143c, #ff69b4);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(220, 20, 60, 0.3);
+}
+
+/* Lock Screen */
+.lock-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.lock-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.lock-icon-large {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.lock-message {
+    font-size: 1.5rem;
+    color: #dc143c;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.lock-submessage {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.countdown {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Responsive for Day Pages */
+@media (max-width: 768px) {
+    .day-content,
+    .lock-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .day-title {
+        font-size: 2rem;
+    }
+    
+    .day-message {
+        font-size: 1.1rem;
+    }
+    
+    .lock-icon-large {
+        font-size: 3rem;
+    }
+    
+    .lock-message {
+        font-size: 1.3rem;
+    }
+}

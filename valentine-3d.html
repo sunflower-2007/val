@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Premium 3D Heart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #3d2817 0%, #6b2c2c 25%, #8b3a3a 50%, #6b2c2c 75%, #3d2817 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(135deg, #3d2817 0%, #6b2c2c 25%, #8b3a3a 50%, #6b2c2c 75%, #3d2817 100%);
+            }
+            25% {
+                background: linear-gradient(135deg, #4a3426 0%, #7a3333 25%, #9a4a4a 50%, #7a3333 75%, #4a3426 100%);
+            }
+            50% {
+                background: linear-gradient(135deg, #3d2817 0%, #6b2c2c 25%, #8b3a3a 50%, #6b2c2c 75%, #3d2817 100%);
+            }
+            75% {
+                background: linear-gradient(135deg, #5a4035 0%, #8a4444 25%, #a85a5a 50%, #8a4444 75%, #5a4035 100%);
+            }
+            100% {
+                background: linear-gradient(135deg, #3d2817 0%, #6b2c2c 25%, #8b3a3a 50%, #6b2c2c 75%, #3d2817 100%);
+            }
+        }
+
+        /* Glow effect at corners and edges */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 10% 10%, rgba(200, 60, 60, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 90%, rgba(180, 50, 50, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 100%, rgba(150, 40, 40, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 0% 50%, rgba(160, 50, 50, 0.12) 0%, transparent 45%);
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* 3D Scene Container */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Content overlay for potential future text */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInDown 1s ease forwards 0.5s;
+        }
+
+        p {
+            font-size: 1.3rem;
+            color: #ffcccc;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.8s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div class="content">
+        <h1>Happy Valentine's Day</h1>
+        <p>A moment of love</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Scene setup
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 8;
+
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true, 
+            alpha: true 
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFShadowShadowMap;
+        container.appendChild(renderer.domElement);
+
+        // Create heart geometry
+        function createHeartGeometry() {
+            const heartShape = new THREE.Shape();
+            
+            const x = 0, y = 0;
+            
+            heartShape.moveTo(x + 5, y + 5);
+            heartShape.bezierCurveTo(x + 5, y + 5, x + 4, y + 0, x + 0, y + 0);
+            heartShape.bezierCurveTo(x - 6, y + 0, x - 6, y + 7, x - 6, y + 7);
+            heartShape.bezierCurveTo(x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19);
+            heartShape.bezierCurveTo(x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7);
+            heartShape.bezierCurveTo(x + 16, y + 7, x + 16, y + 0, x + 10, y + 0);
+            heartShape.bezierCurveTo(x + 7, y + 0, x + 5, y + 5, x + 5, y + 5);
+
+            const geometry = new THREE.ExtrudeGeometry(heartShape, {
+                depth: 2,
+                bevelEnabled: true,
+                bevelThickness: 0.3,
+                bevelSize: 0.2,
+                bevelSegments: 3
+            });
+
+            geometry.scale(0.35, 0.35, 0.35);
+            geometry.center();
+
+            return geometry;
+        }
+
+        // Create heart material with glossy appearance
+        const heartMaterial = new THREE.MeshStandardMaterial({
+            color: 0xc41e3a,
+            metalness: 0.4,
+            roughness: 0.3,
+            emissive: 0x4a0e0e,
+            emissiveIntensity: 0.2,
+            side: THREE.DoubleSide
+        });
+
+        const heartGeometry = createHeartGeometry();
+        const heart = new THREE.Mesh(heartGeometry, heartMaterial);
+        heart.castShadow = true;
+        heart.receiveShadow = true;
+        heart.rotation.x = Math.PI * 0.1;
+        scene.add(heart);
+
+        // Lighting setup for cinematic effect
+        
+        // Key light (warm, from upper left)
+        const keyLight = new THREE.DirectionalLight(0xff6b6b, 1.2);
+        keyLight.position.set(8, 6, 8);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 2048;
+        keyLight.shadow.mapSize.height = 2048;
+        keyLight.shadow.camera.near = 0.5;
+        keyLight.shadow.camera.far = 50;
+        keyLight.shadow.camera.left = -20;
+        keyLight.shadow.camera.right = 20;
+        keyLight.shadow.camera.top = 20;
+        keyLight.shadow.camera.bottom = -20;
+        scene.add(keyLight);
+
+        // Rim light (subtle, from upper right back)
+        const rimLight = new THREE.DirectionalLight(0xff9999, 0.6);
+        rimLight.position.set(-8, 5, 10);
+        scene.add(rimLight);
+
+        // Fill light (soft, from below)
+        const fillLight = new THREE.DirectionalLight(0xcc6666, 0.4);
+        fillLight.position.set(0, -3, 5);
+        scene.add(fillLight);
+
+        // Ambient light for overall softness
+        const ambientLight = new THREE.AmbientLight(0xcc9999, 0.6);
+        scene.add(ambientLight);
+
+        // Point light for glow effect
+        const pointLight = new THREE.PointLight(0xff6b6b, 0.5, 50);
+        pointLight.position.set(0, 0, 5);
+        scene.add(pointLight);
+
+        // Handle window resize
+        window.addEventListener('resize', onWindowResize, false);
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Animation loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // Smooth rotation around Y axis
+            heart.rotation.y += 0.005;
+
+            // Gentle floating motion
+            heart.position.y = Math.sin(elapsedTime * 0.5) * 0.3;
+
+            // Subtle breathing effect
+            const scale = 1 + Math.sin(elapsedTime * 0.8) * 0.03;
+            heart.scale.set(scale, scale, scale);
+
+            // Animate point light intensity
+            pointLight.intensity = 0.5 + Math.sin(elapsedTime * 1.5) * 0.3;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
